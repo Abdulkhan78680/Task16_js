@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello, World!</title>
+    <link rel="stylesheet" href="style.css" />
+      <script src="script.js"></script>
+  </head>
+  <body>
+     
+    <!-- Container where cards will be inserted -->
+    <div class="username">
+      <div class="user">
+<p>Hi username</p>
+      </div>
+      <div class="login">
+        <button type="submit" class="btn">Login</button>
+      </div>
+    </div>
+        <div class="search-box">
+      <input oninput="call()" type="text" id="enterVal" placeholder="search" />
+      <button>Search</button>
+      <div id="err">
+
+      </div>
+    </div>
+    <div id="employee-list" class="card-container"></div>
+
+
+    <script>
+        // 1.  array of employee objects
+        const employees = [
+        { name: "Rajesh", salary: 55000 , place:"nepal"},
+    { name: "Rahul", salary: 50000 , place:"faridabad"},
+    { name: "sameer", salary: 65000, place:"delhi" },
+    { name: "Raj", salary: 55000 , place:"Goa"},
+    { name: "Akira", salary: 70000, place:"Keral" },
+    { name: "sammur", salary: 65000, place:"noida" }
+  ];
+
+        const container = document.getElementById('employee-list'); 
+
+        const cardHTML = employees.map(emp => `
+            <div class="employee-card">
+                <h3>${emp.name}</h3>
+                <p><strong>Salary:</strong> $${emp.salary}</p>
+                <p><strong>Address:</strong> ${emp.place}</p>
+            </div>
+        `).join('');
+        container.innerHTML = cardHTML;
+
+ 
+function call(){
+
+  
+  const employees = [
+  { name: "Rajesh", salary: 55000 , place:"nepal"},
+    { name: "Rahul", salary: 50000 , place:"faridabad"},
+    { name: "sameer", salary: 65000, place:"delhi" },
+    { name: "Raj", salary: 55000 , place:"Goa"},
+    { name: "Akira", salary: 70000, place:"Keral" },
+      { name: "sammur", salary: 65000, place:"noida" }
+  ];
+  const enterVal=document.getElementById('enterVal').value;
+ const result=employees.filter((item) => item.name.toLowerCase().includes(enterVal)
+);
+
+if (result) {
+    const cardHTML = result.map((item) => `
+      <div class="employee-card">
+        <h3>${item.name}</h3>
+        <p><strong>Salary:</strong> $${item.salary}</p>
+        <p><strong>Address:</strong> ${item.place}</p>
+      </div>
+    `).join("");
+    container.innerHTML = cardHTML;
+  } else {
+    container.innerHTML = `<p class="error">No user found</p>`;
+  }
+}
+    </script>
+  </body>
+</html>
